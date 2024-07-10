@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Author ID: 106879224, Alyx Millan Andres
+# Author ID: ALyx Andres
 
 class Student:
     # Define the name and number when a student object is created, ex. student1 = Student('john', 025969102)
@@ -18,13 +18,12 @@ class Student:
 
     # Calculate the grade point average of all courses and return a string
     def displayGPA(self):
+        if len(self.courses) == 0:
+            return 'GPA of student ' + self.name + ' is 0.0'
         gpa = 0.0
-        num_courses = len(self.courses)
-        if num_courses == 0:  # Handle the ZeroDivisionError
-            return 'GPA of student ' + self.name + ' is N/A (no courses taken)'
         for course in self.courses.keys():
-            gpa = gpa + self.courses[course]
-        return 'GPA of student ' + self.name + ' is ' + str(gpa / num_courses)
+            gpa += self.courses[course]
+        return 'GPA of student ' + self.name + ' is ' + str(gpa / len(self.courses))
 
     # Return a list of courses that the student passed (not a 0.0 grade)
     def displayCourses(self):
@@ -39,7 +38,7 @@ if __name__ == '__main__':
     student1.addGrade('ops445', 3.0)
 
     # Create second student object and add grades for each class
-    student2 = Student('Jessica', 123456)  # Note the integer ID here
+    student2 = Student('Jessica', 123456)
     student2.addGrade('ipc144', 4.0)
     student2.addGrade('cpp244', 3.5)
     student2.addGrade('cpp344', 0.0)
